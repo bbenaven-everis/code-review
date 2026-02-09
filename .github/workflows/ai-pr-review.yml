@@ -3,6 +3,7 @@ name: AI Pull Request Review
 on:
   pull_request:
     types: [opened, synchronize, reopened]
+  workflow_dispatch:
 
 permissions:
   pull-requests: write
@@ -20,6 +21,12 @@ jobs:
         run: |
           git fetch origin ${{ github.base_ref }}
           git diff origin/${{ github.base_ref }} > diff.txt
+
+      - name: Sanity check
+        run: |
+          echo "Workflow is running"
+          python --version
+          ls -la
 
       - name: Run AI Agent Review
         env:
