@@ -1,5 +1,6 @@
 package shoestore.shoesstore.shoe.adapters.outbound.persistence;
 
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Component;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -12,6 +13,7 @@ import shoestore.shoesstore.shoe.domain.ports.ShoeRepositoryPort;
 
 
 @Component
+@ConditionalOnProperty(name = "app.persistence", havingValue = "r2dbc", matchIfMissing = true)
 public class ShoeRepositoryAdapter implements ShoeRepositoryPort {
 
     private final R2dbcShoeRepository repository;
