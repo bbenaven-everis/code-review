@@ -1,4 +1,14 @@
 package shoestore.shoesstore.shoe.application.commands;
 
-public class CreateShoeCommand {
-}
+import java.math.BigDecimal;
+
+
+public record CreateShoeCommand(
+        String sku,
+        String name,
+        String brand,
+        String description,
+        BigDecimal priceAmount,
+        String priceCurrency,
+        Integer stock
+) { }
