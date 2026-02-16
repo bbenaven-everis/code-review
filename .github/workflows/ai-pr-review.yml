@@ -12,6 +12,7 @@ permissions:
 jobs:
   ai-review:
     runs-on: ubuntu-latest
+    environment: OPENAI_API_KEY
 
     steps:
       - name: Checkout repo

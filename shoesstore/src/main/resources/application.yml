@@ -1,0 +1,30 @@
+server:
+  port: 8080
+app:
+  persistence: memory
+
+spring:
+  flyway:
+    enabled: false
+
+  autoconfigure:
+    exclude:
+      - org.springframework.boot.autoconfigure.r2dbc.R2dbcAutoConfiguration
+      - org.springframework.boot.autoconfigure.flyway.FlywayAutoConfiguration
+
+  r2dbc:
+    url: r2dbc:postgresql://localhost:5432/shoe_store
+    username: postgres
+    password: postgres
+
+#  flyway:
+#    url: jdbc:postgresql://localhost:5432/shoe_store
+#    user: postgres
+#    password: postgres
+#    locations: classpath:db/migration
+#    baseline-on-migrate: true
+
+logging:
+  level:
+    root: INFO
+    org.springframework.r2dbc: INFO
