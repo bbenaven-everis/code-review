@@ -48,7 +48,7 @@ FORMATO DE RESPUESTA (OBLIGATORIO):
 )"""
 
 response = requests.post(
-    "https://api.openai.com/v1/chat/completions",
+    "https://api.openai.com/v1/responses",
     headers={
         "Authorization": f"Bearer {API_KEY}",
         "Content-Type": "application/json"
@@ -63,7 +63,13 @@ response = requests.post(
     }
 )
 
-content = response.json()["choices"][0]["message"]["content"]
+data = response.json()
+
+if response.status_code != 200:
+    print(data)
+    raise Exception("Error en la API")
+
+content = data["output"][0]["content"][0]["text"]
 
 # Motor de decisión
 if "No se encontraron problemas relevantes" in content:
