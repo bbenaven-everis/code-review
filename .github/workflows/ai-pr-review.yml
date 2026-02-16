@@ -12,6 +12,7 @@ permissions:
 jobs:
   ai-review:
     runs-on: ubuntu-latest
+    environment: production
 
     steps:
       - name: Checkout repo
