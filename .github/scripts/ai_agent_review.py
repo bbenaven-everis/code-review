@@ -55,7 +55,7 @@ response = requests.post(
     },
     json={
         "model": "gpt-4.1-mini",
-        "messages": [
+        "input": [
             {"role": "system", "content": SYSTEM_PROMPT},
             {"role": "user", "content": diff}
         ],
@@ -66,10 +66,12 @@ response = requests.post(
 data = response.json()
 
 if response.status_code != 200:
-    print(data)
+    print("Status:", response.status_code)
+    print("Response:", data)
     raise Exception("Error en la API")
 
 content = data["output"][0]["content"][0]["text"]
+print(content)
 
 # Motor de decisión
 if "No se encontraron problemas relevantes" in content:
